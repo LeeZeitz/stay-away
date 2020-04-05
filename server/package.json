@@ -2,15 +2,16 @@
   "name": "server",
   "version": "0.0.0",
   "private": true,
-  "scripts": {
-    "start": "npm run prod",
-    "build": "npm-run-all clean transpile",
-    "server": "node ./server/bin/www",
-    "transpile": "babel ./server --out-dir dist-server",
-    "clean": "rimraf dist-server",
-    "dev": "SET NODE_ENV=development npm-run-all build server",
-    "prod": "SET NODE_ENV=production npm-run-all build server",
-    "watch:dev": "nodemon"
+  "scripts": { 
+    "start": "npm run prod", 
+    "build": "npm-run-all clean transpile", 
+    "server": "node ./dist-server/bin/www", 
+    "dev": "npm-run-all build server", 
+    "prod": "SET NODE_ENV=production npm-run-all build server", 
+    "transpile": "babel ./server --out-dir dist-server", 
+    "clean": "rimraf dist-server", 
+    "watch:dev": "nodemon", 
+    "test": "jest"   
   },
   "dependencies": {
     "@babel/cli": "^7.8.4",
@@ -24,22 +25,16 @@
     "npm-run-all": "^4.1.5",
     "rimraf": "^3.0.2"
   },
-  "babel": {
-    "presets": [
-      "@babel/preset-env"
-    ]
-  },
   "nodemonConfig": {
     "exec": "npm run dev",
-    "watch": [
-      "server/*",
-      "public/*"
-    ],
-    "ignore": [
-      "**/__tests__/**",
-      "*.tests.js",
-      "*.spec.js"
-    ]
+    "watch": [ "server/*", "public/*" ],
+    "ignore": [ "**/__tests__/**", "*.test.js", "*.spec.js" ] 
+  }, 
+  "babel": { 
+    "presets": [ "@babel/preset-env" ]
+  },
+  "jest": {
+    "testEnvironment": "node"
   },
   "devDependencies": {
     "jest": "^25.2.7"
