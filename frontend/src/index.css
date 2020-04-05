@@ -1,0 +1,24 @@
+.chess_board {
+  height: 100vh;
+  width: 100vw;
+}
+
+.rank {
+  display: flex;
+  justify-content: center;
+}
+
+.chess_cell {
+  flex-basis: 75px;
+  height: 75px;
+  background: linear-gradient(to bottom right, white, rgb(117, 174, 240));
+}
+
+.photo { 
+  height: 75px;
+  width: 75px;
+}
+
+.chess_cell.odd:nth-of-type(even),.chess_cell.even:nth-of-type(odd) {
+  background: linear-gradient(#b5651d, #654321);
+}
