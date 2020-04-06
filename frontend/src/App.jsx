@@ -14,25 +14,23 @@ import {
   black_queen, 
   black_king
 } from './Images/images'
+import Game from './Game';
+import Piece from './Piece';
+import {
+  // dragStart, 
+  dragOver
+ } from './Piece';
 
 // Define files and rows.
 let FILES = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'];
-let ROWS = ['1', '2', '3', '4', '5', '6', '7', '8'];
+// let ROWS = ['1', '2', '3', '4', '5', '6', '7', '8'];
 
 
 // Create the chessboard and set up the initial starting position.
-class ChessBoard extends React.Component {
+class ChessBoard extends Component {
   
   render() {
     let rows = [];
-    let files = [];
-
-    for (let i = 0; i <= 7; i++) {
-      for (let j = 0; j <= 7; j++) {
-        let new_id = FILES[i] + ROWS[j];
-        let newSquare = new Square(new_id)
-      }
-    }
    
     for(var i = 8; i >= 1; i--) {
       rows.push(<Rank rank_number = {i}/>);
@@ -43,7 +41,7 @@ class ChessBoard extends React.Component {
   }
 }
 
-class Rank extends React.Component {
+class Rank extends Component {
   
   render() {
     let row = [];
@@ -57,7 +55,7 @@ class Rank extends React.Component {
   }
 }
 
-class Square extends React.Component {
+class Square extends Component {
   
   render() {
     
@@ -76,7 +74,8 @@ class Square extends React.Component {
     // Set up the pawns.
     if (rank === 2) {
       return (<div className = {className}> 
-        <Picture pic = {white_pawn}></Picture>
+        {/* <Picture pic = {white_pawn}></Picture> */}
+        <img src = {white_pawn} className = "photo"></img>
       </div>
       )
     } else if(rank === 7) {
@@ -167,13 +166,20 @@ class Square extends React.Component {
   }
 }
 
-class Picture extends React.Component {
+class Picture extends Component {
   
   render() {
     return <div className = "picture">
-      <img 
-        src = {this.props.pic} className = "photo"
-      />
+      <Game>
+        <Piece>
+          <div draggable onDragStart = {Piece.dragStart} 
+            src = {this.props.pic} className = "photo">
+          </div>
+          <div onDragOver = {Piece.dragOver} onDrop = {Piece.drop}>
+          </div>
+          
+        </Piece>
+      </Game>
     </div>; 
   }
 }
