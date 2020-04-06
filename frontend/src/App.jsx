@@ -101,7 +101,6 @@ class Square extends Component {
         )
       }
 
-
       // Set up the knights.
       if (rank === 1 && (file === 'B' || file === 'G')) {
         return (<div className = {className}> 
@@ -114,7 +113,6 @@ class Square extends Component {
           </div>  
         )
       }
-      
 
       // Set up the bishops.
       if (rank === 1 && (file === 'C' || file === 'F')) {
@@ -129,7 +127,6 @@ class Square extends Component {
         )
       }
 
-
       // Set up the queens.
       if (file === 'D' && rank === 1) {
         return (<div className = {className}> 
@@ -143,7 +140,6 @@ class Square extends Component {
         )
       }
 
-
       // Set up the kings.
       if (file === 'E' && rank === 1) {
         return (<div className = {className}> 
@@ -156,7 +152,6 @@ class Square extends Component {
           </div>  
         )
       }
-      
 
       // Set up the empty starting squares.
       return (<div className = {className}> 
@@ -167,20 +162,19 @@ class Square extends Component {
 }
 
 class Picture extends Component {
-  
   render() {
-    return <div className = "picture">
-      <Game>
-        <Piece>
-          <div draggable onDragStart = {Piece.dragStart} 
-            src = {this.props.pic} className = "photo">
-          </div>
-          <div onDragOver = {Piece.dragOver} onDrop = {Piece.drop}>
-          </div>
-          
-        </Piece>
-      </Game>
-    </div>; 
+    return (
+      <div className = "picture">
+        <Game>
+          <Piece>
+            <div draggable='true' onDragStart = {Piece.dragStart}>
+              <img src={this.props.pic} className='photo' />
+            </div>
+            <div onDragOver={ Piece.dragOver } onDrop={ Piece.drop } />
+          </Piece>
+        </Game>
+      </div>
+    );
   }
 }
 
