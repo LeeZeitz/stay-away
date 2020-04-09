@@ -74,13 +74,12 @@ class Square extends Component {
     // Set up the pawns.
     if (rank === 2) {
       return (<div className = {className}> 
-        {/* <Picture pic = {white_pawn}></Picture> */}
-        <img src = {white_pawn} className = "photo"></img>
+        <Picture pic = {white_pawn} className = "photo"></Picture>
       </div>
       )
     } else if(rank === 7) {
         return (<div className = {className}> 
-          <Picture pic = {black_pawn}></Picture>
+          <Picture pic = {black_pawn} className = "photo"></Picture>
         </div>
         )
     } 
@@ -91,11 +90,11 @@ class Square extends Component {
       // Set up the rooks.
       if (rank === 1 && (file === 'A' || file === 'H')) {
         return (<div className = {className}> 
-          <Picture pic = {white_rook}></Picture>
+          <Picture pic = {white_rook} className = "photo"></Picture>
         </div>  
         )
       } else if (rank === 8 && (file === 'A' || file === 'H')) {
-          return (<div className = {className}> 
+          return (<div className = {className} className = "photo"> 
             <Picture pic = {black_rook}></Picture>
           </div>  
         )
@@ -172,10 +171,10 @@ class Picture extends Component {
     return <div className = "picture">
       <Game>
         <Piece>
-          <div draggable onDragStart = {Piece.dragStart} 
-            src = {this.props.pic} className = "photo">
-          </div>
-          <div onDragOver = {Piece.dragOver} onDrop = {Piece.drop}>
+          <div>
+            <img 
+            src = {this.props.pic}
+            ></img>
           </div>
           
         </Piece>
