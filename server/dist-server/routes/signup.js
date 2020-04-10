@@ -15,6 +15,8 @@ var router = _express["default"].Router();
 
 router.post('/', function (req, res, next) {
   console.log(req.body);
+  req.app.get('dbInterface').addUser(req.body.username, req.body.password);
+  res.send('User Created');
 });
 router.options('/', function (req, res, next) {
   console.log('here');

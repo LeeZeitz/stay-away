@@ -21,8 +21,11 @@ var _signup = _interopRequireDefault(require("./routes/signup"));
 
 var _cors = _interopRequireDefault(require("cors"));
 
+var _database = _interopRequireDefault(require("./database"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
+var dbInterface = new _database["default"]();
 var app = (0, _express["default"])();
 app.use((0, _morgan["default"])('dev'));
 app.use((0, _cors["default"])());
@@ -32,8 +35,10 @@ app.use(_express["default"].urlencoded({
 }));
 app.use((0, _cookieParser["default"])());
 app.use(_express["default"]["static"](_path["default"].join(__dirname, '../public')));
+app.set('dbInterface', dbInterface);
 app.use('/', _index["default"]);
 app.use('/users', _users["default"]);
 app.use('/signup', _signup["default"]);
+dbInterface.createTable();
 var _default = app;
 exports["default"] = _default;
